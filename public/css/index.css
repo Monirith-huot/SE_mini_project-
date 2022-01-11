@@ -24,3 +24,11 @@
 .form-select {
     width: 50% !important;
 } 
+
+.hide3 {
+    display: none;
+}
+
+.show3 {
+    display: block;
+}

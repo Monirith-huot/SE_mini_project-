@@ -311,6 +311,8 @@ function editSingleRow() {
         $('#table').find('tr').click( function() {
             var editRow = $(this).find('td:first').text();
 
+            
+
 
             var updateRecord = {
                 "id" : editRow,
@@ -353,6 +355,9 @@ function searchRecord() {
     var nameOption = document.getElementById("nameOption").selected
 
     // console.log(inputToSearch.value)
+    var vcNameOption = document.getElementById("vcNameOption").selected
+    var projectIDOption = document.getElementById("projectIDOption").selected
+    var projectNameOption = document.getElementById("projectNameOption").selected
 
     if(idOption && inputToSearch.value.length > 0) {
         fetch("http://localhost:3000/internshipRecord/" + inputToSearch.value).then((data)=>{
@@ -386,26 +391,118 @@ function searchRecord() {
         fetch("http://localhost:3000/internshipRecord?stuName=" + inputToSearch.value).then((data)=>{
             data.json().then((jsonData)=>{
 
-                var temp = ""
-                for (var i = 0; i < jsonData.length; i++) {
+                if (jsonData[0] !=  undefined) {
 
-
-
-                    temp += "<tr>";``
-                    temp += "<td>" + jsonData[i]["id"]+ "</td>";
-                    temp += "<td>" + jsonData[i]["stuName"] + "</td>";
-                    temp += "<td>" + jsonData[i]["vcName"]+ "</td>";
-                    temp += "<td>" + jsonData[i]["projectID"] + "</td>";
-                    temp += "<td>" + jsonData[i]["projectName"]+ "</td>";
-                    temp += "<td>" + "<button type='button' class='btn btn-primary' onclick='editSingleRow()'>Edit</button>" + "</td>";
-                    temp += "<td>" + "<button type='button' class='btn btn-danger' onclick='deleteSingleRow(this)'>Delete</button>" + "</td>"; + "</td>";
-                    temp += "</tr>";
-
+                    var temp = ""
+                    for (var i = 0; i < jsonData.length; i++) {
+    
+                        temp += "<tr>";
+                        temp += "<td>" + jsonData[i]["id"]+ "</td>";
+                        temp += "<td>" + jsonData[i]["stuName"] + "</td>";
+                        temp += "<td>" + jsonData[i]["vcName"]+ "</td>";
+                        temp += "<td>" + jsonData[i]["projectID"] + "</td>";
+                        temp += "<td>" + jsonData[i]["projectName"]+ "</td>";
+                        temp += "<td>" + "<button type='button' class='btn btn-primary' onclick='editSingleRow()'>Edit</button>" + "</td>";
+                        temp += "<td>" + "<button type='button' class='btn btn-danger' onclick='deleteSingleRow(this)'>Delete</button>" + "</td>"; + "</td>";
+                        temp += "</tr>";
+    
+                    }
+                    document.getElementById("data").innerHTML = temp
                 }
-                document.getElementById("data").innerHTML = temp
+
+
+                else {
+                    alert("This name is not exist in the database")
+                }
             })
         })
+    }
 
+    else if( vcNameOption && inputToSearch.value.length > 0) {
+        fetch("http://localhost:3000/internshipRecord?vcName=" + inputToSearch.value).then((data)=>{
+            data.json().then((jsonData)=>{
+
+                if (jsonData[0] !=  undefined) {
+                    var temp = ""
+                    for (var i = 0; i < jsonData.length; i++) {
+    
+                        temp += "<tr>";
+                        temp += "<td>" + jsonData[i]["id"]+ "</td>";
+                        temp += "<td>" + jsonData[i]["stuName"] + "</td>";
+                        temp += "<td>" + jsonData[i]["vcName"]+ "</td>";
+                        temp += "<td>" + jsonData[i]["projectID"] + "</td>";
+                        temp += "<td>" + jsonData[i]["projectName"]+ "</td>";
+                        temp += "<td>" + "<button type='button' class='btn btn-primary' onclick='editSingleRow()'>Edit</button>" + "</td>";
+                        temp += "<td>" + "<button type='button' class='btn btn-danger' onclick='deleteSingleRow(this)'>Delete</button>" + "</td>"; + "</td>";
+                        temp += "</tr>";
+                    }
+                    document.getElementById("data").innerHTML = temp
+                }
+
+
+                else {
+                    alert("This VC name is not exist in the database")
+                }
+            })
+        })
+    }
+
+    else if( projectIDOption && inputToSearch.value.length > 0) {
+        fetch("http://localhost:3000/internshipRecord?projectID=" + inputToSearch.value).then((data)=>{
+            data.json().then((jsonData)=>{
+
+                if (jsonData[0] !=  undefined) {
+                    var temp = ""
+                    for (var i = 0; i < jsonData.length; i++) {
+    
+                        temp += "<tr>";
+                        temp += "<td>" + jsonData[i]["id"]+ "</td>";
+                        temp += "<td>" + jsonData[i]["stuName"] + "</td>";
+                        temp += "<td>" + jsonData[i]["vcName"]+ "</td>";
+                        temp += "<td>" + jsonData[i]["projectID"] + "</td>";
+                        temp += "<td>" + jsonData[i]["projectName"]+ "</td>";
+                        temp += "<td>" + "<button type='button' class='btn btn-primary' onclick='editSingleRow()'>Edit</button>" + "</td>";
+                        temp += "<td>" + "<button type='button' class='btn btn-danger' onclick='deleteSingleRow(this)'>Delete</button>" + "</td>"; + "</td>";
+                        temp += "</tr>";
+                    }
+                    document.getElementById("data").innerHTML = temp
+                }
+
+
+                else {
+                    alert("This VC name is not exist in the database")
+                }
+            })
+        })
+    }
+
+    else if( projectNameOption && inputToSearch.value.length > 0) {
+        fetch("http://localhost:3000/internshipRecord?projectName=" + inputToSearch.value).then((data)=>{
+            data.json().then((jsonData)=>{
+
+                if (jsonData[0] !=  undefined) {
+                    var temp = ""
+                    for (var i = 0; i < jsonData.length; i++) {
+    
+                        temp += "<tr>";
+                        temp += "<td>" + jsonData[i]["id"]+ "</td>";
+                        temp += "<td>" + jsonData[i]["stuName"] + "</td>";
+                        temp += "<td>" + jsonData[i]["vcName"]+ "</td>";
+                        temp += "<td>" + jsonData[i]["projectID"] + "</td>";
+                        temp += "<td>" + jsonData[i]["projectName"]+ "</td>";
+                        temp += "<td>" + "<button type='button' class='btn btn-primary' onclick='editSingleRow()'>Edit</button>" + "</td>";
+                        temp += "<td>" + "<button type='button' class='btn btn-danger' onclick='deleteSingleRow(this)'>Delete</button>" + "</td>"; + "</td>";
+                        temp += "</tr>";
+                    }
+                    document.getElementById("data").innerHTML = temp
+                }
+
+
+                else {
+                    alert("This VC name is not exist in the database")
+                }
+            })
+        })
     }
     else {
         alert("Please input something...");
