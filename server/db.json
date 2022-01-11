@@ -1,0 +1,32 @@
+{
+  "internshipRecord": [
+    {
+      "id": "1234",
+      "stuName": "Zass",
+      "vcName": "marry Rith",
+      "projectID": "12341245",
+      "projectName": "Fcwsdwa"
+    },
+    {
+      "id": "544123",
+      "stuName": "Pisey",
+      "vcName": "SSW",
+      "projectID": "613123124",
+      "projectName": "Hello"
+    },
+    {
+      "id": "1234141",
+      "stuName": "Rith",
+      "vcName": "dw11",
+      "projectID": "dawd",
+      "projectName": "12413213"
+    },
+    {
+      "id": "214124124123",
+      "stuName": "Rith",
+      "vcName": "213123",
+      "projectID": "dawdwa",
+      "projectName": "3213"
+    }
+  ]
+}

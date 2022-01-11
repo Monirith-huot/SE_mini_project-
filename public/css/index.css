@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+
+.hide1 {
+    display: none;
+}
+
+.show1 {
+    display: block;
+}
+
+.form-select {
+    width: 50% !important;
+} 
