@@ -1,4 +1,5 @@
 let internshipInfos = [];
+let updatedInternshipInfo = []
 
 document.getElementById('addRecord').addEventListener("click", addRecord);
 document.getElementById('deleteAllRecord').addEventListener("click", deleteAllRecord);
@@ -21,6 +22,9 @@ document.getElementById('searchRecord').addEventListener("click", searchRecord);
 
 document.getElementById('restartButton').addEventListener("click", restartDB);
 
+document.getElementById('saveRecordUpdated').addEventListener("click", saveRecord);
+
+
 
 let internshipRecord = {
     stuID : document.getElementById('stuID').value,
@@ -29,6 +33,7 @@ let internshipRecord = {
     projectID: document.getElementById('projectID').value,
     projectName: document.getElementById('projectName').value,
 }
+console.log(internshipRecord)
 function openToaddRecord() {
     var text = document.getElementById("popup");
     text.classList.toggle("hide");
@@ -44,6 +49,7 @@ function addRecord() {
     else {
 
         internshipInfos.push(internshipRecord);
+        console.log(internshipInfos);
         var record = {
             "id" :  stuID.value,
             "stuName" : stuName.value,
@@ -51,7 +57,8 @@ function addRecord() {
             "projectID" : projectID.value,
             "projectName" : projectName.value
         }
-        fetch("http://localhost:3000/internshipRecord", {
+        console.log(record)
+        fetch("http://localhost:3000/internshipRecord/", {
             //Post for add record
             method : "POST", //what kind of action you want to perform
             headers: {
@@ -66,9 +73,6 @@ function addRecord() {
         document.forms[0].reset();
     }
     
-    // let pre = document.querySelector('#msg pre');
-    
-    // pre.textContent = '\n' + JSON.stringify(internshipInfos, '\t', 2);
 }
 
 function deleteAllRecord() {
@@ -86,7 +90,7 @@ function deleteAllRecord() {
                             "Content-Type": "application/json",
                         }
                     }
-                    )}
+                )}
             })
         })
     }
@@ -127,17 +131,17 @@ function defaultTable() {
 
 
 function ascendingStuID() {
-    fetch("http://localhost:3000/internshipRecord?_sort=id").then (res => {
+    fetch("http://localhost:3000/internshipRecord").then (res => {
         res.json().then(
             data => {
-                console.log(data)
-                if(data.length > 0) {
+                const sortedResponse = data.sort(function(a, b) {
+                    return parseInt(a.id) - parseInt(b.id)
+                });
+
+                if(sortedResponse.length > 0) {
                     var temp = "";
-
-
                     // ----- start loop
-
-                    data.forEach((info) => {
+                    sortedResponse.forEach((info) => {
                         temp += "<tr>";
                         temp += "<td>" + info.id+ "</td>";
                         temp += "<td>" + info.stuName+ "</td>";
@@ -155,22 +159,24 @@ function ascendingStuID() {
             }
         )
     })
-
 }
+
+
+
 
 //ID from largest to the smallest
 function descendingStuID() {
-    fetch("http://localhost:3000/internshipRecord?_sort=id&_order=desc").then (res => {
+    fetch("http://localhost:3000/internshipRecord").then (res => {
         res.json().then(
             data => {
-                console.log(data)
-                if(data.length > 0) {
+                const sortedResponse = data.sort(function(a, b) {
+                    return parseInt(a.id) - parseInt(b.id)
+                }).reverse();
+
+                if(sortedResponse.length > 0) {
                     var temp = "";
-
-
                     // ----- start loop
-
-                    data.forEach((info) => {
+                    sortedResponse.forEach((info) => {
                         temp += "<tr>";
                         temp += "<td>" + info.id+ "</td>";
                         temp += "<td>" + info.stuName+ "</td>";
@@ -178,7 +184,8 @@ function descendingStuID() {
                         temp += "<td>" + info.projectID+ "</td>";
                         temp += "<td>" + info.projectName+ "</td>";
                         temp += "<td>" + "<button type='button' class='btn btn-primary' onclick='editSingleRow()' >Edit</button>" + "</td>";
-                        temp += "<td>" + "<button type='button' class='btn btn-danger' onclick='deleteSingleRow()'>Delete</button>" + "</td>"; + "</td>";                        temp += "</tr>";
+                        temp += "<td>" + "<button type='button' class='btn btn-danger' onclick='deleteSingleRow(this)'>Delete</button>" + "</td>"; + "</td>";
+                        temp += "</tr>";
                     })
 
                     // ------ close loop
@@ -310,9 +317,6 @@ function editSingleRow() {
 
         $('#table').find('tr').click( function() {
             var editRow = $(this).find('td:first').text();
-
-            
-
 
             var updateRecord = {
                 "id" : editRow,
@@ -512,3 +516,77 @@ function searchRecord() {
 function restartDB() {
     defaultTable()
 }
+
+
+
+
+
+function  editSingleRow() {
+    var text = document.getElementById("popup3");
+    text.classList.toggle("hide3");
+
+    $('#table').find('tr').click( function() {
+        var id = $(this).find('td:first').text();
+        var stuName = $(this).find('td:nth-child(2)').text();
+        var VCName = $(this).find('td:nth-child(3)').text();
+        var projectID = $(this).find('td:nth-child(4)').text();
+        var projectName = $(this).find('td:nth-child(5)').text();
+
+
+        document.getElementById('stuIDUpdated').value = id,
+        document.getElementById('stuNameUpdated').value = stuName, 
+        document.getElementById('vcNameUpdated').value = VCName,
+        document.getElementById('projectIDUpdated').value = projectID,
+        document.getElementById('projectNameUpdated').value = projectName
+
+    })
+}
+// function putDataToForm(id,stuName,VCName, projectID, projectName) {
+
+//     var recordUpdated =  {
+//         "id" :  id,
+//         "stuName" : stuName,
+//         "vcName" : VCName,
+//         "projectID" : projectID,
+//         "projectName" : projectName
+//     }
+//     document.getElementById('stuIDUpdated').value = id,
+//     document.getElementById('stuNameUpdated').value = stuName, 
+//     document.getElementById('vcNameUpdated').value = VCName,
+//     document.getElementById('projectIDUpdated').value = projectID,
+//     document.getElementById('projectNameUpdated').value = projectName
+
+// }
+
+function saveRecord() {
+    
+    var record = {
+        "id" : document.getElementById('stuIDUpdated').value,
+        "stuName" :     document.getElementById('stuNameUpdated').value, 
+        "vcName" :     document.getElementById('vcNameUpdated').value,
+        "projectID" : document.getElementById('projectIDUpdated').value,
+        "projectName" :     document.getElementById('projectNameUpdated').value,
+    }
+
+    if (record["stuName"].length == 0 || record["vcName"].length == 0 || record["projectName"].length == 0) {
+        alert("Please fill all the form first")
+    }
+
+    else {
+
+        fetch("http://localhost:3000/internshipRecord/" + record.id, {
+            method : "PUT", //to add new data to db
+            headers : {
+                "Content-Type": "application/json",
+            },
+            body : JSON.stringify(record)
+            }).then((data) => {
+                console.log(data)
+        })
+    }
+
+}
+
+
+
+

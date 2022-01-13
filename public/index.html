@@ -13,17 +13,17 @@
     <body>
 
         <main class="container">
-            <h3 class="text-center mt-5 mb-5">Mini project</h3>
+            <h3 class="text-center mt-5 mb-5">Internship Repository</h3>
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-end me-5">
 
-                <button type="button" class="btn btn-success mt-3 mb-3" id="openToaddRecord">Add Record</button>
+                <button type="button" class="btn btn-success mt-3 mb-3" id="openToaddRecord"> <i class="fas fa-plus"></i></button>
 
-                <button type="button" class="btn btn-danger mt-3 mb-3" id="deleteAllRecord">Delete all record</button>
+                <button type="button" class="btn btn-danger mt-3 mb-3" id="deleteAllRecord"><i class="fas fa-trash-alt"></i></button>
 
                 <div class="dropdown mt-3 mb-3">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                    View as
+                        <i class="fas fa-eye"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
                         <li>
@@ -47,7 +47,7 @@
                 <button type="button" class="btn btn-primary mt-3 mb-3" id="openSearchRecord"><i class="fas fa-search"></i></button>
 
 
-                <button type="button" class="btn btn-primary mt-3 mb-3" id="restartButton">restart</button>
+                <button type="button" class="btn btn-primary mt-3 mb-3" id="restartButton"><i class="far fa-sync-alt"></i></button>
                 
 
             </div>
@@ -112,8 +112,8 @@
             </div>
 
 
-            <div class="text-center">
-                <div class="hide1 mt-5 mb-5" id="popup1">
+            <div class="text-center" id="editmodal">
+                <div class="hide1 mt-5 mb-5 " id="popup1">
                     <select class="form-select" aria-label="Default select example">
                         <option id="idOption" selected>ID</option>
                         <option id="nameOption">Name</option>
@@ -140,6 +140,8 @@
             </div>
 
 
+
+
             <table class="table table-striped" id="table">
                 <tr  class="bg-info">
                     <th class="text-light">Student ID</th>
@@ -157,12 +159,14 @@
                 </tbody>
             </table>
 
+
+
             <div class="hide3" id="popup3">
                 <form>
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">ID : </label>
                         <div class="col-sm-12">
-                            <input type="email" class="form-control" id="stuID" placeholder="Student ID" >
+                            <input type="email" class="form-control" id="stuIDUpdated" placeholder="Student ID"readonly >
                         </div>
                     </div>
                     <br>
@@ -171,7 +175,7 @@
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Name: </label>
                         <div class="col-sm-12">
-                            <input type="email" class="form-control" id="stuName" placeholder="Full name">
+                            <input type="email" class="form-control" id="stuNameUpdated" placeholder="Full name">
                         </div>
                     </div>
                     <br>
@@ -179,7 +183,7 @@
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">VC : </label>
                         <div class="col-sm-12">
-                            <input type="email" class="form-control" id="vcName" placeholder="Visual company">
+                            <input type="email" class="form-control" id="vcNameUpdated" placeholder="Visual company">
                         </div>
                     </div>
                     <br>
@@ -187,7 +191,7 @@
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Project ID : </label>
                         <div class="col-sm-12">
-                            <input type="email" class="form-control" id="projectID" placeholder="Project ID">
+                            <input type="email" class="form-control" id="projectIDUpdated" placeholder="Project ID" readonly>
                         </div>
                     </div>
                     <br>
@@ -195,21 +199,20 @@
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Project name : </label>
                         <div class="col-sm-12">
-                            <input type="email" class="form-control" id="projectName" placeholder="Project name">
+                            <input type="email" class="form-control" id="projectNameUpdated" placeholder="Project name">
                         </div>
                     </div>
                     <br>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end me-5">
-                        <button type="button" class="btn btn-success mt-3 mb-3 text-center" id="addRecord">Add Record</button>
+                        <button type="button" class="btn btn-success mt-3 mb-3 text-center" id="saveRecordUpdated">Save </button>
 
                     </div>
 
                     
                 </form>
-
-
             </div>
+                
 
 
         </main>
