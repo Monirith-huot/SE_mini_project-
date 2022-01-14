@@ -33,7 +33,7 @@ let internshipRecord = {
     projectID: document.getElementById('projectID').value,
     projectName: document.getElementById('projectName').value,
 }
-console.log(internshipRecord)
+
 function openToaddRecord() {
     var text = document.getElementById("popup");
     text.classList.toggle("hide");
@@ -46,6 +46,7 @@ function addRecord() {
         alert("Please fill all the column")
     }
 
+
     else {
 
         internshipInfos.push(internshipRecord);
@@ -57,7 +58,6 @@ function addRecord() {
             "projectID" : projectID.value,
             "projectName" : projectName.value
         }
-        console.log(record)
         fetch("http://localhost:3000/internshipRecord/", {
             //Post for add record
             method : "POST", //what kind of action you want to perform
@@ -106,7 +106,6 @@ function defaultTable() {
                 console.log(data);
                 if(data.length > 0) {
                     var temp = "";
-
 
                     // ----- start loop
                     data.forEach((info) => {
